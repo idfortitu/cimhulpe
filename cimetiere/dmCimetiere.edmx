@@ -1,0 +1,944 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="cimetiereModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="acteurs">
+          <Key>
+            <PropertyRef Name="act_id" />
+          </Key>
+          <Property Name="act_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="act_nom" Type="varchar" MaxLength="255" />
+          <Property Name="act_prenom" Type="varchar" MaxLength="255" />
+          <Property Name="act_adresse" Type="varchar" MaxLength="255" />
+          <Property Name="act_cp" Type="int" />
+          <Property Name="act_ville" Type="varchar" MaxLength="255" />
+          <Property Name="act_pays" Type="varchar" MaxLength="255" />
+          <Property Name="act_tel" Type="varchar" MaxLength="255" />
+          <Property Name="act_date_naiss" Type="date" />
+          <Property Name="act_no_registre" Type="bigint" />
+        </EntityType>
+        <EntityType Name="concessions">
+          <Key>
+            <PropertyRef Name="con_id" />
+          </Key>
+          <Property Name="con_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="con_numero" Type="int" />
+          <Property Name="con_date_debut" Type="date" />
+          <Property Name="con_date_fin" Type="date" />
+          <Property Name="con_nbre_renouvellements" Type="int" />
+          <Property Name="con_montant_paye" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="con_commentaire" Type="text" />
+          <Property Name="con_histoire" Type="text" />
+          <Property Name="con_fk_empl" Type="int" />
+          <Property Name="con_fk_csnr" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="defunts">
+          <Key>
+            <PropertyRef Name="def_id" />
+          </Key>
+          <Property Name="def_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="def_numero_lh" Type="int" />
+          <Property Name="def_numero_annee" Type="int" />
+          <Property Name="def_prenom" Type="varchar" MaxLength="255" />
+          <Property Name="def_nom" Type="varchar" MaxLength="255" />
+          <Property Name="def_adresse" Type="varchar" MaxLength="255" />
+          <Property Name="def_ville" Type="varchar" MaxLength="255" />
+          <Property Name="def_cp" Type="int" />
+          <Property Name="def_pays" Type="varchar" MaxLength="255" />
+          <Property Name="def_etat_civil" Type="enum" />
+          <Property Name="def_etat_civil_de" Type="varchar" MaxLength="255" />
+          <Property Name="def_date_naiss" Type="date" />
+          <Property Name="def_lieu_naiss" Type="varchar" MaxLength="255" />
+          <Property Name="def_date_deces" Type="date" />
+          <Property Name="def_lieu_deces" Type="varchar" MaxLength="255" />
+          <Property Name="def_fk_sej_actif" Type="int" />
+        </EntityType>
+        <EntityType Name="emplacements">
+          <Key>
+            <PropertyRef Name="empl_id" />
+          </Key>
+          <Property Name="empl_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="empl_reference" Type="varchar" MaxLength="255" />
+          <Property Name="empl_type" Type="enum" />
+          <Property Name="empl_nb_places" Type="int" />
+          <Property Name="empl_commentaire" Type="text" />
+          <Property Name="empl_monum_classe" Type="bool" />
+          <Property Name="empl_coords" Type="varbinary" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="form_nouvelle_con_beneficiaires">
+          <Key>
+            <PropertyRef Name="fnvconben_id" />
+          </Key>
+          <Property Name="fnvconben_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fnvconben_nom" Type="varchar" MaxLength="255" />
+          <Property Name="fnvconben_prenom" Type="varchar" MaxLength="255" />
+          <Property Name="fnvconben_date_naiss" Type="date" />
+          <Property Name="fnvconben_lien_parente" Type="varchar" MaxLength="255" />
+          <Property Name="fnvconben_adresse" Type="varchar" MaxLength="255" />
+          <Property Name="fnvconben_ville" Type="varchar" MaxLength="255" />
+          <Property Name="fnvconben_cp" Type="int" />
+          <Property Name="fnvconben_pays" Type="varchar" MaxLength="255" />
+          <Property Name="fnvconben_fk_fnvcon" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forms_inhumation">
+          <Key>
+            <PropertyRef Name="finh_id" />
+          </Key>
+          <Property Name="finh_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="finh_num_def_lh" Type="int" />
+          <Property Name="finh_num_def_annee" Type="int" />
+          <Property Name="finh_def_nom" Type="varchar" MaxLength="255" />
+          <Property Name="finh_def_prenom" Type="varchar" MaxLength="255" />
+          <Property Name="finh_def_adresse" Type="varchar" MaxLength="255" />
+          <Property Name="finh_def_cp" Type="int" />
+          <Property Name="finh_def_ville" Type="varchar" MaxLength="255" />
+          <Property Name="finh_def_pays" Type="varchar" MaxLength="255" />
+          <Property Name="finh_def_etat_civil" Type="enum" />
+          <Property Name="finh_def_etat_civil_de" Type="varchar" MaxLength="255" />
+          <Property Name="finh_def_date_naiss" Type="date" />
+          <Property Name="finh_def_lieu_naiss" Type="varchar" MaxLength="255" />
+          <Property Name="finh_def_date_deces" Type="date" />
+          <Property Name="finh_def_lieu_deces" Type="varchar" MaxLength="255" />
+          <Property Name="finh_dmdr_nom" Type="varchar" MaxLength="255" />
+          <Property Name="finh_dmdr_prenom" Type="varchar" MaxLength="255" />
+          <Property Name="finh_dmdr_tel" Type="varchar" MaxLength="255" />
+          <Property Name="finh_dmdr_adresse" Type="varchar" MaxLength="255" />
+          <Property Name="finh_dmdr_ville" Type="varchar" MaxLength="255" />
+          <Property Name="finh_dmdr_cp" Type="int" />
+          <Property Name="finh_dmdr_pays" Type="varchar" MaxLength="255" />
+          <Property Name="finh_conc_sollic" Type="enum" />
+          <Property Name="finh_typeempl" Type="enum" />
+          <Property Name="finh_ref_empl" Type="varchar" MaxLength="25" />
+          <Property Name="finh_ref_autres_def" Type="varchar" MaxLength="255" />
+          <Property Name="finh_date_sign" Type="date" />
+          <Property Name="finh_avis_fossoy" Type="bool" />
+          <Property Name="finh_commentaire" Type="text" />
+        </EntityType>
+        <EntityType Name="forms_nouvelle_con">
+          <Key>
+            <PropertyRef Name="fnvcon_id" />
+          </Key>
+          <Property Name="fnvcon_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fnvcon_pmand_nom" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_pmand_prenom" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_pmand_date_naiss" Type="date" />
+          <Property Name="fnvcon_pmand_tel" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_pmand_adresse" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_pmand_ville" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_pmand_cp" Type="int" />
+          <Property Name="fnvcon_pmand_pays" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_csnr_nom" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_csnr_prenom" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_csnr_date_naiss" Type="date" />
+          <Property Name="fnvcon_csnr_no_national" Type="bigint" />
+          <Property Name="fnvcon_csnr_adresse" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_csnr_ville" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_csnr_cp" Type="int" />
+          <Property Name="fnvcon_csnr_pays" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_csnr_tel" Type="varchar" MaxLength="255" />
+          <Property Name="fnvcon_typecon" Type="enum" />
+          <Property Name="fnvcon_date_sign" Type="date" />
+          <Property Name="fnvcon_signe_par_pmand" Type="bool" />
+          <Property Name="fnvcon_commentaire" Type="text" />
+          <Property Name="fnvcon_fk_finh" Type="int" />
+        </EntityType>
+        <EntityType Name="jnt_ben_con">
+          <Key>
+            <PropertyRef Name="jnt_ben_con_fk_ben" />
+            <PropertyRef Name="jnt_ben_con_fk_con" />
+          </Key>
+          <Property Name="jnt_ben_con_fk_ben" Type="int" Nullable="false" />
+          <Property Name="jnt_ben_con_fk_con" Type="int" Nullable="false" />
+          <Property Name="jnt_ben_con_lien_parente" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="jnt_pcont_con">
+          <Key>
+            <PropertyRef Name="jnt_pcont_id_pers" />
+            <PropertyRef Name="jnt_pcont_id_con" />
+          </Key>
+          <Property Name="jnt_pcont_id_pers" Type="int" Nullable="false" />
+          <Property Name="jnt_pcont_id_con" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sejours">
+          <Key>
+            <PropertyRef Name="sej_id" />
+          </Key>
+          <Property Name="sej_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sej_date_debut" Type="date" />
+          <Property Name="sej_date_fin" Type="date" />
+          <Property Name="sej_fk_def" Type="int" Nullable="false" />
+          <Property Name="sej_fk_empl" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="concessions_ibfk_1">
+          <End Role="emplacements" Type="Self.emplacements" Multiplicity="0..1" />
+          <End Role="concessions" Type="Self.concessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emplacements">
+              <PropertyRef Name="empl_id" />
+            </Principal>
+            <Dependent Role="concessions">
+              <PropertyRef Name="con_fk_empl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="concessions_ibfk_2">
+          <End Role="acteurs" Type="Self.acteurs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="concessions" Type="Self.concessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acteurs">
+              <PropertyRef Name="act_id" />
+            </Principal>
+            <Dependent Role="concessions">
+              <PropertyRef Name="con_fk_csnr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="defunts_ibfk_1">
+          <End Role="sejours" Type="Self.sejours" Multiplicity="0..1" />
+          <End Role="defunts" Type="Self.defunts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sejours">
+              <PropertyRef Name="sej_id" />
+            </Principal>
+            <Dependent Role="defunts">
+              <PropertyRef Name="def_fk_sej_actif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="form_nouvelle_con_beneficiaires_ibfk_1">
+          <End Role="forms_nouvelle_con" Type="Self.forms_nouvelle_con" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="form_nouvelle_con_beneficiaires" Type="Self.form_nouvelle_con_beneficiaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forms_nouvelle_con">
+              <PropertyRef Name="fnvcon_id" />
+            </Principal>
+            <Dependent Role="form_nouvelle_con_beneficiaires">
+              <PropertyRef Name="fnvconben_fk_fnvcon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="forms_nouvelle_con_ibfk_2">
+          <End Role="forms_inhumation" Type="Self.forms_inhumation" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="forms_nouvelle_con" Type="Self.forms_nouvelle_con" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forms_inhumation">
+              <PropertyRef Name="finh_id" />
+            </Principal>
+            <Dependent Role="forms_nouvelle_con">
+              <PropertyRef Name="fnvcon_fk_finh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="jnt_ben_con_ibfk_1">
+          <End Role="acteurs" Type="Self.acteurs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="jnt_ben_con" Type="Self.jnt_ben_con" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acteurs">
+              <PropertyRef Name="act_id" />
+            </Principal>
+            <Dependent Role="jnt_ben_con">
+              <PropertyRef Name="jnt_ben_con_fk_ben" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="jnt_ben_con_ibfk_2">
+          <End Role="concessions" Type="Self.concessions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="jnt_ben_con" Type="Self.jnt_ben_con" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concessions">
+              <PropertyRef Name="con_id" />
+            </Principal>
+            <Dependent Role="jnt_ben_con">
+              <PropertyRef Name="jnt_ben_con_fk_con" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="jnt_pcont_con_ibfk_1">
+          <End Role="acteurs" Type="Self.acteurs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="jnt_pcont_con" Type="Self.jnt_pcont_con" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acteurs">
+              <PropertyRef Name="act_id" />
+            </Principal>
+            <Dependent Role="jnt_pcont_con">
+              <PropertyRef Name="jnt_pcont_id_pers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="jnt_pcont_con_ibfk_2">
+          <End Role="concessions" Type="Self.concessions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="jnt_pcont_con" Type="Self.jnt_pcont_con" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concessions">
+              <PropertyRef Name="con_id" />
+            </Principal>
+            <Dependent Role="jnt_pcont_con">
+              <PropertyRef Name="jnt_pcont_id_con" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sejours_ibfk_1">
+          <End Role="defunts" Type="Self.defunts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="sejours" Type="Self.sejours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defunts">
+              <PropertyRef Name="def_id" />
+            </Principal>
+            <Dependent Role="sejours">
+              <PropertyRef Name="sej_fk_def" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sejours_ibfk_2">
+          <End Role="emplacements" Type="Self.emplacements" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="sejours" Type="Self.sejours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emplacements">
+              <PropertyRef Name="empl_id" />
+            </Principal>
+            <Dependent Role="sejours">
+              <PropertyRef Name="sej_fk_empl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cimetiereModelStoreContainer">
+          <EntitySet Name="acteurs" EntityType="Self.acteurs" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="concessions" EntityType="Self.concessions" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="defunts" EntityType="Self.defunts" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="emplacements" EntityType="Self.emplacements" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="form_nouvelle_con_beneficiaires" EntityType="Self.form_nouvelle_con_beneficiaires" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="forms_inhumation" EntityType="Self.forms_inhumation" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="forms_nouvelle_con" EntityType="Self.forms_nouvelle_con" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="jnt_ben_con" EntityType="Self.jnt_ben_con" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="jnt_pcont_con" EntityType="Self.jnt_pcont_con" Schema="cimetiere" store:Type="Tables" />
+          <EntitySet Name="sejours" EntityType="Self.sejours" Schema="cimetiere" store:Type="Tables" />
+          <AssociationSet Name="concessions_ibfk_1" Association="Self.concessions_ibfk_1">
+            <End Role="emplacements" EntitySet="emplacements" />
+            <End Role="concessions" EntitySet="concessions" />
+          </AssociationSet>
+          <AssociationSet Name="concessions_ibfk_2" Association="Self.concessions_ibfk_2">
+            <End Role="acteurs" EntitySet="acteurs" />
+            <End Role="concessions" EntitySet="concessions" />
+          </AssociationSet>
+          <AssociationSet Name="defunts_ibfk_1" Association="Self.defunts_ibfk_1">
+            <End Role="sejours" EntitySet="sejours" />
+            <End Role="defunts" EntitySet="defunts" />
+          </AssociationSet>
+          <AssociationSet Name="form_nouvelle_con_beneficiaires_ibfk_1" Association="Self.form_nouvelle_con_beneficiaires_ibfk_1">
+            <End Role="forms_nouvelle_con" EntitySet="forms_nouvelle_con" />
+            <End Role="form_nouvelle_con_beneficiaires" EntitySet="form_nouvelle_con_beneficiaires" />
+          </AssociationSet>
+          <AssociationSet Name="forms_nouvelle_con_ibfk_2" Association="Self.forms_nouvelle_con_ibfk_2">
+            <End Role="forms_inhumation" EntitySet="forms_inhumation" />
+            <End Role="forms_nouvelle_con" EntitySet="forms_nouvelle_con" />
+          </AssociationSet>
+          <AssociationSet Name="jnt_ben_con_ibfk_1" Association="Self.jnt_ben_con_ibfk_1">
+            <End Role="acteurs" EntitySet="acteurs" />
+            <End Role="jnt_ben_con" EntitySet="jnt_ben_con" />
+          </AssociationSet>
+          <AssociationSet Name="jnt_ben_con_ibfk_2" Association="Self.jnt_ben_con_ibfk_2">
+            <End Role="concessions" EntitySet="concessions" />
+            <End Role="jnt_ben_con" EntitySet="jnt_ben_con" />
+          </AssociationSet>
+          <AssociationSet Name="jnt_pcont_con_ibfk_1" Association="Self.jnt_pcont_con_ibfk_1">
+            <End Role="acteurs" EntitySet="acteurs" />
+            <End Role="jnt_pcont_con" EntitySet="jnt_pcont_con" />
+          </AssociationSet>
+          <AssociationSet Name="jnt_pcont_con_ibfk_2" Association="Self.jnt_pcont_con_ibfk_2">
+            <End Role="concessions" EntitySet="concessions" />
+            <End Role="jnt_pcont_con" EntitySet="jnt_pcont_con" />
+          </AssociationSet>
+          <AssociationSet Name="sejours_ibfk_1" Association="Self.sejours_ibfk_1">
+            <End Role="defunts" EntitySet="defunts" />
+            <End Role="sejours" EntitySet="sejours" />
+          </AssociationSet>
+          <AssociationSet Name="sejours_ibfk_2" Association="Self.sejours_ibfk_2">
+            <End Role="emplacements" EntitySet="emplacements" />
+            <End Role="sejours" EntitySet="sejours" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cimetiereModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Acteur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Prenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Adresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Cp" Type="Int32" Nullable="true" />
+          <Property Name="Ville" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Pays" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Tel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DateNaiss" Type="DateTime" Nullable="true" />
+          <Property Name="NoRegistre" Type="Int64" Nullable="true" />
+          <NavigationProperty Name="ConcessionnaireDe" Relationship="Self.concessions_ibfk_2" FromRole="acteurs" ToRole="concessions" />
+          <NavigationProperty Name="PersonneContactDe" Relationship="cimetiereModel.jnt_pcont_con1" FromRole="Acteur" ToRole="concessions" />
+          <NavigationProperty Name="MentionsCommeBenef" Relationship="cimetiereModel.jnt_ben_con_ibfk_1" FromRole="Acteur" ToRole="MentionBeneficiaire" />
+        </EntityType>
+        <EntityType Name="Concession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int32" Nullable="true" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="true" />
+          <Property Name="DateFin" Type="DateTime" Nullable="true" />
+          <Property Name="MontantPaye" Type="Decimal" Nullable="true" />
+          <Property Name="Commentaire" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Histoire" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="FkEmpl" Type="Int32" Nullable="true" />
+          <Property Name="FkCsnr" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Concessionnaire" Relationship="Self.concessions_ibfk_2" FromRole="concessions" ToRole="acteurs" />
+          <NavigationProperty Name="Emplacement" Relationship="Self.concessions_ibfk_1" FromRole="concessions" ToRole="emplacements" />
+          <NavigationProperty Name="PersonnesContact" Relationship="cimetiereModel.jnt_pcont_con1" FromRole="concessions" ToRole="Acteur" />
+          <Property Name="NombreRenovations" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="MentionsBenefs" Relationship="cimetiereModel.jnt_ben_con_ibfk_2" FromRole="Concession" ToRole="MentionBeneficiaire" />
+        </EntityType>
+        <EntityType Name="Defunt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroLh" Type="Int32" Nullable="true" />
+          <Property Name="NumeroAnnee" Type="Int32" Nullable="true" />
+          <Property Name="Prenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Adresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Ville" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Cp" Type="Int32" Nullable="true" />
+          <Property Name="Pays" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="EtatCivil" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="EtatCivilDe" Type="String" MaxLength="255" FixedLength="false" Unicode="false" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Nullable="true" />
+          <Property Name="DateNaiss" Type="DateTime" Nullable="true" />
+          <Property Name="LieuNaiss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DateDeces" Type="DateTime" Nullable="true" />
+          <Property Name="LieuDeces" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="FkSejActif" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="SejourActif" Relationship="Self.defunts_ibfk_1" FromRole="defunts" ToRole="sejours" />
+          <NavigationProperty Name="Sejours" Relationship="Self.sejours_ibfk_1" FromRole="defunts" ToRole="sejours" />
+        </EntityType>
+        <EntityType Name="Emplacement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reference" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Type" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="NbPlaces" Type="Int32" Nullable="true" />
+          <Property Name="Commentaire" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="MonumClasse" Type="Boolean" Nullable="true" />
+          <Property Name="Coords" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="true" />
+          <NavigationProperty Name="Concessions" Relationship="Self.concessions_ibfk_1" FromRole="emplacements" ToRole="concessions" />
+          <NavigationProperty Name="Sejours" Relationship="Self.sejours_ibfk_2" FromRole="emplacements" ToRole="sejours" />
+        </EntityType>
+        <EntityType Name="FnvConBenef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Prenom" Type="String" MaxLength="255" Unicode="false" FixedLength="false" Nullable="true" />
+          <Property Name="DateNaiss" Type="DateTime" Nullable="true" />
+          <Property Name="LienParente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Adresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Ville" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Cp" Type="Int32" Nullable="true" />
+          <Property Name="Pays" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="FkDemNvcon" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DemNvCon" Relationship="Self.form_nouvelle_con_beneficiaires_ibfk_1" FromRole="form_nouvelle_con_beneficiaires" ToRole="forms_nouvelle_con" />
+        </EntityType>
+        <EntityType Name="DemandeInhumation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumDefLh" Type="Int32" Nullable="true" />
+          <Property Name="NumDefAnnee" Type="Int32" Nullable="true" />
+          <Property Name="DefNom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DefPrenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DefAdresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DefCp" Type="Int32" Nullable="true" />
+          <Property Name="DefVille" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DefPays" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DefEtatCivil" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DefEtatCivilDe" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DefDateNaiss" Type="DateTime" Nullable="true" />
+          <Property Name="DefLieuNaiss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DefDateDeces" Type="DateTime" Nullable="true" />
+          <Property Name="DefLieuDeces" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DmdrNom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DmdrPrenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Nullable="true" />
+          <Property Name="DmdrTel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DmdrAdresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DmdrVille" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DmdrCp" Type="Int32" Nullable="true" />
+          <Property Name="DmdrPays" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="ConcSollic" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="TypeEmpl" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="RefEmpl" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="RefAutresDef" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DateSign" Type="DateTime" Nullable="true" />
+          <Property Name="AvisFossoy" Type="Boolean" Nullable="true" />
+          <Property Name="Commentaire" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="true" />
+          <NavigationProperty Name="DemandesNvCon" Relationship="Self.forms_nouvelle_con_ibfk_2" FromRole="forms_inhumation" ToRole="forms_nouvelle_con" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Private" />
+        </EntityType>
+        <EntityType Name="DemandeNvConcession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PmandNom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="PmandPrenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="PmandDateNaiss" Type="DateTime" Nullable="true" />
+          <Property Name="PmandTel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="PmandAdresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="PmandVille" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="PmandCp" Type="Int32" Nullable="true" />
+          <Property Name="PmandPays" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="CsnrNom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="CsnrPrenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="CsnrDateNaiss" Type="DateTime" Nullable="true" />
+          <Property Name="CsnrNoNational" Type="Int64" Nullable="true" />
+          <Property Name="CsnrAdresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="CsnrVille" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="CsnrCp" Type="Int32" Nullable="true" />
+          <Property Name="CsnrPays" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="CsnrTel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="TypeCon" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="DateSign" Type="DateTime" Nullable="true" />
+          <Property Name="SigneParPmand" Type="Boolean" Nullable="true" />
+          <Property Name="Commentaire" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="FkDemInh" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Beneficiaires" Relationship="Self.form_nouvelle_con_beneficiaires_ibfk_1" FromRole="forms_nouvelle_con" ToRole="form_nouvelle_con_beneficiaires" />
+          <NavigationProperty Name="DemandeInhumation" Relationship="Self.forms_nouvelle_con_ibfk_2" FromRole="forms_nouvelle_con" ToRole="forms_inhumation" />
+        </EntityType>
+        <EntityType Name="MentionBeneficiaire">
+          <Key>
+            <PropertyRef Name="FkBenef" />
+            <PropertyRef Name="FkCon" />
+          </Key>
+          <Property Name="EnQualiteDe" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="FkBenef" Type="Int32" Nullable="false" />
+          <Property Name="FkCon" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Beneficiaire" Relationship="cimetiereModel.jnt_ben_con_ibfk_1" FromRole="MentionBeneficiaire" ToRole="Acteur" />
+          <NavigationProperty Name="Concession" Relationship="cimetiereModel.jnt_ben_con_ibfk_2" FromRole="MentionBeneficiaire" ToRole="Concession" />
+        </EntityType>
+        <EntityType Name="Sejour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="true" />
+          <Property Name="DateFin" Type="DateTime" Nullable="true" />
+          <Property Name="FkDef" Type="Int32" Nullable="false" />
+          <Property Name="FkEmpl" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Defunt" Relationship="Self.sejours_ibfk_1" FromRole="sejours" ToRole="defunts" />
+          <NavigationProperty Name="Emplacement" Relationship="Self.sejours_ibfk_2" FromRole="sejours" ToRole="emplacements" />
+        </EntityType>
+        <Association Name="concessions_ibfk_2">
+          <End Role="acteurs" Type="cimetiereModel.Acteur" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="concessions" Type="cimetiereModel.Concession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acteurs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="concessions">
+              <PropertyRef Name="FkCsnr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="concessions_ibfk_1">
+          <End Role="emplacements" Type="cimetiereModel.Emplacement" Multiplicity="0..1" />
+          <End Role="concessions" Type="cimetiereModel.Concession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emplacements">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="concessions">
+              <PropertyRef Name="FkEmpl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="defunts_ibfk_1">
+          <End Role="sejours" Type="cimetiereModel.Sejour" Multiplicity="0..1" />
+          <End Role="defunts" Type="cimetiereModel.Defunt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sejours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="defunts">
+              <PropertyRef Name="FkSejActif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sejours_ibfk_1">
+          <End Role="defunts" Type="cimetiereModel.Defunt" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="sejours" Type="cimetiereModel.Sejour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defunts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sejours">
+              <PropertyRef Name="FkDef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sejours_ibfk_2">
+          <End Role="emplacements" Type="cimetiereModel.Emplacement" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="sejours" Type="cimetiereModel.Sejour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emplacements">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sejours">
+              <PropertyRef Name="FkEmpl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="form_nouvelle_con_beneficiaires_ibfk_1">
+          <End Role="forms_nouvelle_con" Type="cimetiereModel.DemandeNvConcession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="form_nouvelle_con_beneficiaires" Type="cimetiereModel.FnvConBenef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forms_nouvelle_con">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="form_nouvelle_con_beneficiaires">
+              <PropertyRef Name="FkDemNvcon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="forms_nouvelle_con_ibfk_2">
+          <End Role="forms_inhumation" Type="cimetiereModel.DemandeInhumation" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="forms_nouvelle_con" Type="cimetiereModel.DemandeNvConcession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forms_inhumation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="forms_nouvelle_con">
+              <PropertyRef Name="FkDemInh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CimBddContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Acteurs" EntityType="cimetiereModel.Acteur" />
+          <EntitySet Name="Concessions" EntityType="cimetiereModel.Concession" />
+          <EntitySet Name="Defunts" EntityType="cimetiereModel.Defunt" />
+          <EntitySet Name="Emplacements" EntityType="cimetiereModel.Emplacement" />
+          <EntitySet Name="DemNvConBenefs" EntityType="cimetiereModel.FnvConBenef" />
+          <EntitySet Name="DemandesInhumation" EntityType="cimetiereModel.DemandeInhumation" />
+          <EntitySet Name="DemandesNvConcession" EntityType="cimetiereModel.DemandeNvConcession" />
+          <EntitySet Name="MentionsBeneficiaires" EntityType="cimetiereModel.MentionBeneficiaire" />
+          <EntitySet Name="Sejours" EntityType="cimetiereModel.Sejour" />
+          <AssociationSet Name="concessions_ibfk_2" Association="Self.concessions_ibfk_2">
+            <End Role="acteurs" EntitySet="Acteurs" />
+            <End Role="concessions" EntitySet="Concessions" />
+          </AssociationSet>
+          <AssociationSet Name="concessions_ibfk_1" Association="Self.concessions_ibfk_1">
+            <End Role="emplacements" EntitySet="Emplacements" />
+            <End Role="concessions" EntitySet="Concessions" />
+          </AssociationSet>
+          <AssociationSet Name="defunts_ibfk_1" Association="Self.defunts_ibfk_1">
+            <End Role="sejours" EntitySet="Sejours" />
+            <End Role="defunts" EntitySet="Defunts" />
+          </AssociationSet>
+          <AssociationSet Name="sejours_ibfk_1" Association="Self.sejours_ibfk_1">
+            <End Role="defunts" EntitySet="Defunts" />
+            <End Role="sejours" EntitySet="Sejours" />
+          </AssociationSet>
+          <AssociationSet Name="sejours_ibfk_2" Association="Self.sejours_ibfk_2">
+            <End Role="emplacements" EntitySet="Emplacements" />
+            <End Role="sejours" EntitySet="Sejours" />
+          </AssociationSet>
+          <AssociationSet Name="form_nouvelle_con_beneficiaires_ibfk_1" Association="Self.form_nouvelle_con_beneficiaires_ibfk_1">
+            <End Role="forms_nouvelle_con" EntitySet="DemandesNvConcession" />
+            <End Role="form_nouvelle_con_beneficiaires" EntitySet="DemNvConBenefs" />
+          </AssociationSet>
+          <AssociationSet Name="forms_nouvelle_con_ibfk_2" Association="Self.forms_nouvelle_con_ibfk_2">
+            <End Role="forms_inhumation" EntitySet="DemandesInhumation" />
+            <End Role="forms_nouvelle_con" EntitySet="DemandesNvConcession" />
+          </AssociationSet>
+          <AssociationSet Name="jnt_pcont_con1" Association="cimetiereModel.jnt_pcont_con1">
+            <End Role="Acteur" EntitySet="Acteurs" />
+            <End Role="concessions" EntitySet="Concessions" />
+          </AssociationSet>
+          <AssociationSet Name="jnt_ben_con_ibfk_1" Association="cimetiereModel.jnt_ben_con_ibfk_1">
+            <End Role="Acteur" EntitySet="Acteurs" />
+            <End Role="MentionBeneficiaire" EntitySet="MentionsBeneficiaires" />
+          </AssociationSet>
+          <AssociationSet Name="jnt_ben_con_ibfk_2" Association="cimetiereModel.jnt_ben_con_ibfk_2">
+            <End Role="Concession" EntitySet="Concessions" />
+            <End Role="MentionBeneficiaire" EntitySet="MentionsBeneficiaires" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="jnt_pcont_con1">
+          <End Type="cimetiereModel.Acteur" Role="Acteur" Multiplicity="*" />
+          <End Type="cimetiereModel.Concession" Role="concessions" Multiplicity="*" />
+        </Association>
+        <Association Name="jnt_ben_con_ibfk_1">
+          <End Type="cimetiereModel.Acteur" Role="Acteur" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="cimetiereModel.MentionBeneficiaire" Role="MentionBeneficiaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Acteur">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MentionBeneficiaire">
+              <PropertyRef Name="FkBenef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="jnt_ben_con_ibfk_2">
+          <End Type="cimetiereModel.Concession" Role="Concession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="cimetiereModel.MentionBeneficiaire" Role="MentionBeneficiaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concession">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MentionBeneficiaire">
+              <PropertyRef Name="FkCon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cimetiereModelStoreContainer" CdmEntityContainer="CimBddContext">
+          <EntitySetMapping Name="Acteurs">
+            <EntityTypeMapping TypeName="cimetiereModel.Acteur">
+              <MappingFragment StoreEntitySet="acteurs">
+                <ScalarProperty Name="Id" ColumnName="act_id" />
+                <ScalarProperty Name="Nom" ColumnName="act_nom" />
+                <ScalarProperty Name="Prenom" ColumnName="act_prenom" />
+                <ScalarProperty Name="Adresse" ColumnName="act_adresse" />
+                <ScalarProperty Name="Cp" ColumnName="act_cp" />
+                <ScalarProperty Name="Ville" ColumnName="act_ville" />
+                <ScalarProperty Name="Pays" ColumnName="act_pays" />
+                <ScalarProperty Name="Tel" ColumnName="act_tel" />
+                <ScalarProperty Name="DateNaiss" ColumnName="act_date_naiss" />
+                <ScalarProperty Name="NoRegistre" ColumnName="act_no_registre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Concessions">
+            <EntityTypeMapping TypeName="cimetiereModel.Concession">
+              <MappingFragment StoreEntitySet="concessions">
+                <ScalarProperty Name="NombreRenovations" ColumnName="con_nbre_renouvellements" />
+                <ScalarProperty Name="Id" ColumnName="con_id" />
+                <ScalarProperty Name="Numero" ColumnName="con_numero" />
+                <ScalarProperty Name="DateDebut" ColumnName="con_date_debut" />
+                <ScalarProperty Name="DateFin" ColumnName="con_date_fin" />
+                <ScalarProperty Name="MontantPaye" ColumnName="con_montant_paye" />
+                <ScalarProperty Name="Commentaire" ColumnName="con_commentaire" />
+                <ScalarProperty Name="Histoire" ColumnName="con_histoire" />
+                <ScalarProperty Name="FkEmpl" ColumnName="con_fk_empl" />
+                <ScalarProperty Name="FkCsnr" ColumnName="con_fk_csnr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Defunts">
+            <EntityTypeMapping TypeName="cimetiereModel.Defunt">
+              <MappingFragment StoreEntitySet="defunts">
+                <ScalarProperty Name="Id" ColumnName="def_id" />
+                <ScalarProperty Name="NumeroLh" ColumnName="def_numero_lh" />
+                <ScalarProperty Name="NumeroAnnee" ColumnName="def_numero_annee" />
+                <ScalarProperty Name="Prenom" ColumnName="def_prenom" />
+                <ScalarProperty Name="Nom" ColumnName="def_nom" />
+                <ScalarProperty Name="Adresse" ColumnName="def_adresse" />
+                <ScalarProperty Name="Ville" ColumnName="def_ville" />
+                <ScalarProperty Name="Cp" ColumnName="def_cp" />
+                <ScalarProperty Name="Pays" ColumnName="def_pays" />
+                <ScalarProperty Name="EtatCivil" ColumnName="def_etat_civil" />
+                <ScalarProperty Name="EtatCivilDe" ColumnName="def_etat_civil_de" />
+                <ScalarProperty Name="DateNaiss" ColumnName="def_date_naiss" />
+                <ScalarProperty Name="LieuNaiss" ColumnName="def_lieu_naiss" />
+                <ScalarProperty Name="DateDeces" ColumnName="def_date_deces" />
+                <ScalarProperty Name="LieuDeces" ColumnName="def_lieu_deces" />
+                <ScalarProperty Name="FkSejActif" ColumnName="def_fk_sej_actif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emplacements">
+            <EntityTypeMapping TypeName="cimetiereModel.Emplacement">
+              <MappingFragment StoreEntitySet="emplacements">
+                <ScalarProperty Name="Id" ColumnName="empl_id" />
+                <ScalarProperty Name="Reference" ColumnName="empl_reference" />
+                <ScalarProperty Name="Type" ColumnName="empl_type" />
+                <ScalarProperty Name="NbPlaces" ColumnName="empl_nb_places" />
+                <ScalarProperty Name="Commentaire" ColumnName="empl_commentaire" />
+                <ScalarProperty Name="MonumClasse" ColumnName="empl_monum_classe" />
+                <ScalarProperty Name="Coords" ColumnName="empl_coords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DemNvConBenefs">
+            <EntityTypeMapping TypeName="cimetiereModel.FnvConBenef">
+              <MappingFragment StoreEntitySet="form_nouvelle_con_beneficiaires">
+                <ScalarProperty Name="Id" ColumnName="fnvconben_id" />
+                <ScalarProperty Name="Nom" ColumnName="fnvconben_nom" />
+                <ScalarProperty Name="Prenom" ColumnName="fnvconben_prenom" />
+                <ScalarProperty Name="DateNaiss" ColumnName="fnvconben_date_naiss" />
+                <ScalarProperty Name="LienParente" ColumnName="fnvconben_lien_parente" />
+                <ScalarProperty Name="Adresse" ColumnName="fnvconben_adresse" />
+                <ScalarProperty Name="Ville" ColumnName="fnvconben_ville" />
+                <ScalarProperty Name="Cp" ColumnName="fnvconben_cp" />
+                <ScalarProperty Name="Pays" ColumnName="fnvconben_pays" />
+                <ScalarProperty Name="FkDemNvcon" ColumnName="fnvconben_fk_fnvcon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DemandesInhumation">
+            <EntityTypeMapping TypeName="cimetiereModel.DemandeInhumation">
+              <MappingFragment StoreEntitySet="forms_inhumation">
+                <ScalarProperty Name="Id" ColumnName="finh_id" />
+                <ScalarProperty Name="NumDefLh" ColumnName="finh_num_def_lh" />
+                <ScalarProperty Name="NumDefAnnee" ColumnName="finh_num_def_annee" />
+                <ScalarProperty Name="DefNom" ColumnName="finh_def_nom" />
+                <ScalarProperty Name="DefPrenom" ColumnName="finh_def_prenom" />
+                <ScalarProperty Name="DefAdresse" ColumnName="finh_def_adresse" />
+                <ScalarProperty Name="DefCp" ColumnName="finh_def_cp" />
+                <ScalarProperty Name="DefVille" ColumnName="finh_def_ville" />
+                <ScalarProperty Name="DefPays" ColumnName="finh_def_pays" />
+                <ScalarProperty Name="DefEtatCivil" ColumnName="finh_def_etat_civil" />
+                <ScalarProperty Name="DefEtatCivilDe" ColumnName="finh_def_etat_civil_de" />
+                <ScalarProperty Name="DefDateNaiss" ColumnName="finh_def_date_naiss" />
+                <ScalarProperty Name="DefLieuNaiss" ColumnName="finh_def_lieu_naiss" />
+                <ScalarProperty Name="DefDateDeces" ColumnName="finh_def_date_deces" />
+                <ScalarProperty Name="DefLieuDeces" ColumnName="finh_def_lieu_deces" />
+                <ScalarProperty Name="DmdrNom" ColumnName="finh_dmdr_nom" />
+                <ScalarProperty Name="DmdrPrenom" ColumnName="finh_dmdr_prenom" />
+                <ScalarProperty Name="DmdrTel" ColumnName="finh_dmdr_tel" />
+                <ScalarProperty Name="DmdrAdresse" ColumnName="finh_dmdr_adresse" />
+                <ScalarProperty Name="DmdrVille" ColumnName="finh_dmdr_ville" />
+                <ScalarProperty Name="DmdrCp" ColumnName="finh_dmdr_cp" />
+                <ScalarProperty Name="DmdrPays" ColumnName="finh_dmdr_pays" />
+                <ScalarProperty Name="ConcSollic" ColumnName="finh_conc_sollic" />
+                <ScalarProperty Name="TypeEmpl" ColumnName="finh_typeempl" />
+                <ScalarProperty Name="RefEmpl" ColumnName="finh_ref_empl" />
+                <ScalarProperty Name="RefAutresDef" ColumnName="finh_ref_autres_def" />
+                <ScalarProperty Name="DateSign" ColumnName="finh_date_sign" />
+                <ScalarProperty Name="AvisFossoy" ColumnName="finh_avis_fossoy" />
+                <ScalarProperty Name="Commentaire" ColumnName="finh_commentaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DemandesNvConcession">
+            <EntityTypeMapping TypeName="cimetiereModel.DemandeNvConcession">
+              <MappingFragment StoreEntitySet="forms_nouvelle_con">
+                <ScalarProperty Name="Id" ColumnName="fnvcon_id" />
+                <ScalarProperty Name="PmandNom" ColumnName="fnvcon_pmand_nom" />
+                <ScalarProperty Name="PmandPrenom" ColumnName="fnvcon_pmand_prenom" />
+                <ScalarProperty Name="PmandDateNaiss" ColumnName="fnvcon_pmand_date_naiss" />
+                <ScalarProperty Name="PmandTel" ColumnName="fnvcon_pmand_tel" />
+                <ScalarProperty Name="PmandAdresse" ColumnName="fnvcon_pmand_adresse" />
+                <ScalarProperty Name="PmandVille" ColumnName="fnvcon_pmand_ville" />
+                <ScalarProperty Name="PmandCp" ColumnName="fnvcon_pmand_cp" />
+                <ScalarProperty Name="PmandPays" ColumnName="fnvcon_pmand_pays" />
+                <ScalarProperty Name="CsnrNom" ColumnName="fnvcon_csnr_nom" />
+                <ScalarProperty Name="CsnrPrenom" ColumnName="fnvcon_csnr_prenom" />
+                <ScalarProperty Name="CsnrDateNaiss" ColumnName="fnvcon_csnr_date_naiss" />
+                <ScalarProperty Name="CsnrNoNational" ColumnName="fnvcon_csnr_no_national" />
+                <ScalarProperty Name="CsnrAdresse" ColumnName="fnvcon_csnr_adresse" />
+                <ScalarProperty Name="CsnrVille" ColumnName="fnvcon_csnr_ville" />
+                <ScalarProperty Name="CsnrCp" ColumnName="fnvcon_csnr_cp" />
+                <ScalarProperty Name="CsnrPays" ColumnName="fnvcon_csnr_pays" />
+                <ScalarProperty Name="CsnrTel" ColumnName="fnvcon_csnr_tel" />
+                <ScalarProperty Name="TypeCon" ColumnName="fnvcon_typecon" />
+                <ScalarProperty Name="DateSign" ColumnName="fnvcon_date_sign" />
+                <ScalarProperty Name="SigneParPmand" ColumnName="fnvcon_signe_par_pmand" />
+                <ScalarProperty Name="Commentaire" ColumnName="fnvcon_commentaire" />
+                <ScalarProperty Name="FkDemInh" ColumnName="fnvcon_fk_finh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MentionsBeneficiaires">
+            <EntityTypeMapping TypeName="cimetiereModel.MentionBeneficiaire">
+              <MappingFragment StoreEntitySet="jnt_ben_con">
+                <ScalarProperty Name="FkCon" ColumnName="jnt_ben_con_fk_con" />
+                <ScalarProperty Name="FkBenef" ColumnName="jnt_ben_con_fk_ben" />
+                <ScalarProperty Name="EnQualiteDe" ColumnName="jnt_ben_con_lien_parente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sejours">
+            <EntityTypeMapping TypeName="cimetiereModel.Sejour">
+              <MappingFragment StoreEntitySet="sejours">
+                <ScalarProperty Name="Id" ColumnName="sej_id" />
+                <ScalarProperty Name="DateDebut" ColumnName="sej_date_debut" />
+                <ScalarProperty Name="DateFin" ColumnName="sej_date_fin" />
+                <ScalarProperty Name="FkDef" ColumnName="sej_fk_def" />
+                <ScalarProperty Name="FkEmpl" ColumnName="sej_fk_empl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="jnt_pcont_con1" TypeName="cimetiereModel.jnt_pcont_con1" StoreEntitySet="jnt_pcont_con">
+            <EndProperty Name="concessions">
+              <ScalarProperty Name="Id" ColumnName="jnt_pcont_id_con" />
+            </EndProperty>
+            <EndProperty Name="Acteur">
+              <ScalarProperty Name="Id" ColumnName="jnt_pcont_id_pers" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

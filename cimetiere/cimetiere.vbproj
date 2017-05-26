@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AF090615-7005-42CD-A5FF-FC95A24F8250}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>cimetiere.My.MyApplication</StartupObject>
+    <RootNamespace>cimetiere</RootNamespace>
+    <AssemblyName>cimetiere</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>cimetiere.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>cimetiere.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>Off</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>cimetiere.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>cimetiere.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\itextsharp.xtra.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility.Data" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net40\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Web, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Web.6.9.9\lib\net40\MySql.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PopupControl">
+      <HintPath>..\..\..\vbsimplepopup\SimplePopup\bin.net4\PopupControl.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acteur.partial.vb" />
+    <Compile Include="Acteur.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ancien_pan_beneficiaires.Designer.vb">
+      <DependentUpon>ancien_pan_beneficiaires.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ancien_pan_beneficiaires.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="CimBddContext.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CimBddContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CimBddContext.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concession.partial.vb" />
+    <Compile Include="Concession.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewConcessions.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Defunt.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DemandeInhumation.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DemandeNvConcession.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElemListeBenefBdd.Designer.vb">
+      <DependentUpon>ElemListeBenefBdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ElemListeBenefBdd.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Emplacement.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="flowlayoutblabla.Designer.vb">
+      <DependentUpon>flowlayoutblabla.vb</DependentUpon>
+    </Compile>
+    <Compile Include="flowlayoutblabla.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FnvConBenef.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditActeur.Designer.vb">
+      <DependentUpon>FormEditActeur.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditActeur.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditConcession.Designer.vb">
+      <DependentUpon>FormEditConcession.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditConcession.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditDefunt.Designer.vb">
+      <DependentUpon>FormEditDefunt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditDefunt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditEmplacement.Designer.vb">
+      <DependentUpon>FormEditEmplacement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditEmplacement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNouvelleConcession.Designer.vb">
+      <DependentUpon>FormNouvelleConcession.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormNouvelleConcession.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRechercheConcession.Designer.vb">
+      <DependentUpon>FormRechercheConcession.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRechercheConcession.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IEntityInterface.vb" />
+    <Compile Include="ListboxEntites.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListBoxCustomActeurs.Designer.vb">
+      <DependentUpon>ListBoxCustomActeurs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListBoxCustomActeurs.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MentionBeneficiaire.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dmCimetiere.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dmCimetiere.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="QuiModifieBdd.vb" />
+    <Compile Include="Sejour.vb">
+      <DependentUpon>CimBddContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleQuestion.Designer.vb">
+      <DependentUpon>SimpleQuestion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleQuestion.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Defunt.partial.vb" />
+    <Compile Include="dvlptAjEmpl.Designer.vb">
+      <DependentUpon>dvlptAjEmpl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dvlptAjEmpl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElemListeBeneficiairesNvCon.Designer.vb">
+      <DependentUpon>ElemListeBeneficiairesNvCon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ElemListeBeneficiairesNvCon.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Emplacement.partial.vb" />
+    <Compile Include="exportpdf_vieux.vb" />
+    <Compile Include="FnvConBenef.partial.vb" />
+    <Compile Include="FormEmplacements.Designer.vb">
+      <DependentUpon>FormEmplacements.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmplacements.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRechercheEmplacement.Designer.vb">
+      <DependentUpon>FormRechercheEmplacement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRechercheEmplacement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemandeInhumation.partial.vb" />
+    <Compile Include="FormulaireNvConcession.partial.vb" />
+    <Compile Include="Demande.Designer.vb">
+      <DependentUpon>Demande.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demande.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IEntity.vb" />
+    <Compile Include="ListeBeneficiairesNvCon.Designer.vb">
+      <DependentUpon>ListeBeneficiairesNvCon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListeBeneficiairesNvCon.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MaskedTextBoxDate.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PanelChoixTypeEmpl.Designer.vb">
+      <DependentUpon>PanelChoixTypeEmpl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PanelChoixTypeEmpl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PanelInfosCsnr.Designer.vb">
+      <DependentUpon>PanelInfosCsnr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PanelInfosCsnr.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PlanCimEdit.Designer.vb">
+      <DependentUpon>PlanCimEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PlanCimEdit.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PlanCimetiere.Designer.vb">
+      <DependentUpon>PlanCimetiere.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PlanCimetiere.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PopupRecherche.Designer.vb">
+      <DependentUpon>PopupRecherche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PopupRecherche.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PopupRechercheDemandeur.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigLocale.vb" />
+    <Compile Include="Sejour.partial.vb" />
+    <Compile Include="SortableBindingList.vb" />
+    <Compile Include="TextBoxCBanner.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxFloatNullable.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxInt.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxIntNullable.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxNullable.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxFloat.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="tmpExFormNouvelleInhumation.Designer.vb">
+      <DependentUpon>tmpExFormNouvelleInhumation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="tmpExFormNouvelleInhumation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tmpprt.Designer.vb">
+      <DependentUpon>tmpprt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="tmpprt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TypesDonnees.vb" />
+    <Compile Include="ExporteurPdf.vb" />
+    <Compile Include="debug_tests.Designer.vb">
+      <DependentUpon>debug_tests.vb</DependentUpon>
+    </Compile>
+    <Compile Include="debug_tests.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDetails.Designer.vb">
+      <DependentUpon>FDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGestion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGestion.Designer.vb">
+      <DependentUpon>FormGestion.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDel.Designer.vb">
+      <DependentUpon>FormDel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModif.Designer.vb">
+      <DependentUpon>FormModif.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormModif.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.vb">
+      <DependentUpon>FormLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bdd.vb" />
+    <Compile Include="tests_http.vb" />
+    <Compile Include="FormNouvelleInhumation.Designer.vb">
+      <DependentUpon>FormNouvelleInhumation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormNouvelleInhumation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHome.Designer.vb">
+      <DependentUpon>FormHome.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormHome.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProlongation.Designer.vb">
+      <DependentUpon>FormProlongation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProlongation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UzineAGaz.vb" />
+    <Compile Include="VarGlobales.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ZoneTranslucide.vb">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ancien_pan_beneficiaires.resx">
+      <DependentUpon>ancien_pan_beneficiaires.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ElemListeBenefBdd.resx">
+      <DependentUpon>ElemListeBenefBdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="flowlayoutblabla.resx">
+      <DependentUpon>flowlayoutblabla.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditActeur.resx">
+      <DependentUpon>FormEditActeur.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditConcession.resx">
+      <DependentUpon>FormEditConcession.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditDefunt.resx">
+      <DependentUpon>FormEditDefunt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditEmplacement.resx">
+      <DependentUpon>FormEditEmplacement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNouvelleConcession.resx">
+      <DependentUpon>FormNouvelleConcession.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRechercheConcession.resx">
+      <DependentUpon>FormRechercheConcession.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListboxEntites.resx">
+      <DependentUpon>ListboxEntites.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListBoxCustomActeurs.resx">
+      <DependentUpon>ListBoxCustomActeurs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleQuestion.resx">
+      <DependentUpon>SimpleQuestion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demande.resx">
+      <DependentUpon>Demande.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="debug_tests.resx">
+      <DependentUpon>debug_tests.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dvlptAjEmpl.resx">
+      <DependentUpon>dvlptAjEmpl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ElemListeBeneficiairesNvCon.resx">
+      <DependentUpon>ElemListeBeneficiairesNvCon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDetails.resx">
+      <DependentUpon>FDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmplacements.resx">
+      <DependentUpon>FormEmplacements.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGestion.resx">
+      <DependentUpon>FormGestion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDel.resx">
+      <DependentUpon>FormDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHome.resx">
+      <DependentUpon>FormHome.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModif.resx">
+      <DependentUpon>FormModif.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProlongation.resx">
+      <DependentUpon>FormProlongation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRechercheEmplacement.resx">
+      <DependentUpon>FormRechercheEmplacement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListeBeneficiairesNvCon.resx">
+      <DependentUpon>ListeBeneficiairesNvCon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelChoixTypeEmpl.resx">
+      <DependentUpon>PanelChoixTypeEmpl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelInfosCsnr.resx">
+      <DependentUpon>PanelInfosCsnr.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlanCimEdit.resx">
+      <DependentUpon>PlanCimEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlanCimetiere.resx">
+      <DependentUpon>PlanCimetiere.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupRecherche.resx">
+      <DependentUpon>PopupRecherche.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNouvelleInhumation.resx">
+      <DependentUpon>FormNouvelleInhumation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tmpExFormNouvelleInhumation.resx">
+      <DependentUpon>tmpExFormNouvelleInhumation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tmpprt.resx">
+      <DependentUpon>tmpprt.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="dmCimetiere.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dmCimetiere.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="dmCimetiere.edmx.diagram">
+      <DependentUpon>dmCimetiere.edmx</DependentUpon>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="itextsharp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="itextsharp.pdfa.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="itextsharp.xtra.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\COPRGTL.TTF" />
+    <None Include="Resources\icon_table.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_table11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Table_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SearchContract_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\planA3.JPG" />
+    <None Include="Resources\moins.png" />
+    <None Include="Resources\Add_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CimBddContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CimBddContext.Context.vb</LastGenOutput>
+      <DependentUpon>dmCimetiere.edmx</DependentUpon>
+    </Content>
+    <Content Include="CimBddContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CimBddContext.vb</LastGenOutput>
+      <DependentUpon>dmCimetiere.edmx</DependentUpon>
+    </Content>
+    <None Include="Resources\Filter_16x.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

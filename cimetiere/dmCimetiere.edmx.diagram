@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="17006ddbbc1344cc8969a64a867d3258" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="cimetiereModel.Acteur" Width="1.5" PointX="1.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="cimetiereModel.Concession" Width="1.5" PointX="7.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cimetiereModel.Defunt" Width="1.5" PointX="12.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cimetiereModel.Emplacement" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cimetiereModel.FnvConBenef" Width="1.5" PointX="4.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cimetiereModel.DemandeInhumation" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cimetiereModel.DemandeNvConcession" Width="1.5" PointX="2.625" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cimetiereModel.MentionBeneficiaire" Width="1.5" PointX="4.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cimetiereModel.Sejour" Width="1.5" PointX="10.125" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="cimetiereModel.concessions_ibfk_2" ManuallyRouted="false" ></AssociationConnector>
+        <AssociationConnector Association="cimetiereModel.concessions_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="cimetiereModel.defunts_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="cimetiereModel.sejours_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="cimetiereModel.sejours_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="cimetiereModel.form_nouvelle_con_beneficiaires_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="cimetiereModel.forms_nouvelle_con_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="cimetiereModel.jnt_pcont_con1" ></AssociationConnector>
+        <AssociationConnector Association="cimetiereModel.jnt_ben_con_ibfk_1" />
+        <AssociationConnector Association="cimetiereModel.jnt_ben_con_ibfk_2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,3 @@
+﻿Module VarGlobales
+
+End Module
